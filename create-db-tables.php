@@ -27,7 +27,7 @@ require 'create-new-table.php';
 require 'pages/table-edit.php';
 require 'pages/view-table-data.php';
 require_once(ABSPATH . 'wp-config.php');
-\
+
 $conn = mysqli_connect(DB_HOST, DB_USER, DB_PASSWORD, DB_NAME);
 
 function cdbt_create_db_tables_create_menu() {
