@@ -29,8 +29,7 @@ function cdbt_view_table_data() {
         <?php
     
 
-$conn = mysqli_connect($service['credentials']['host'],$service['credentials']['username'],$service['credentials']['password'],$service['credentials']['db_name']);
-
+	global $conn;
 // Check connection
 if (!$conn) {
     die("Connection failed: " . mysqli_connect_error());
