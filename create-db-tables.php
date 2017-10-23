@@ -26,8 +26,9 @@ if ( ! defined( 'CDBT_VERSION' ) ) {
 require 'create-new-table.php';
 require 'pages/table-edit.php';
 require 'pages/view-table-data.php';
+require_once('db_login.php');
 // Create connection
-$conn = mysqli_connect($service['credentials']['host'],$service['credentials']['username'],$service['credentials']['password'],$service['credentials']['db_name']);
+$conn = mysqli_connect($db_host, $db_username, $db_password, $db_name);
 
 function cdbt_create_db_tables_create_menu() {
 
