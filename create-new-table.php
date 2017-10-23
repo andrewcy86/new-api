@@ -4,7 +4,7 @@ if ( ! defined( 'ABSPATH' ) ) exit;
 
 function cdbt_create_new_table() {
 
-$conn = mysqli_connect($service['credentials']['host'] . ':' . $service['credentials']['port'],$service['credentials']['username'],$service['credentials']['password'],$service['credentials']['db_name']);
+$conn = mysqli_connect($service['credentials']['host'],$service['credentials']['username'],$service['credentials']['password'],$service['credentials']['db_name']);
 
 // Check connection
 if (!$conn) {
