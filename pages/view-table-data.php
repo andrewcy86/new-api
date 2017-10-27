@@ -62,7 +62,7 @@ $api_operations = $row["api_operations"];
 	
             <h3>API - <?php echo $view_table ?></h3>
 
-<form action="<?php echo admin_url('admin-post.php'); ?>" method="post">
+<form action="<?php echo admin_url('admin-post.php'); ?>" method="post" enctype="multipart/form-data">
 
 			<fieldset class="row-fieldset" id="table-name">
 				<label id="table-name">Name:</label>
@@ -213,16 +213,7 @@ if (!$conn) {
     die("Connection failed: " . mysqli_connect_error());
 }
 
-$api_name = sanitize_text_field($_POST['data']);
-$api_description = sanitize_text_field($_POST['api_description']);
-$api_version = sanitize_text_field($_POST['api_version']);
-$api_operations = sanitize_text_field($_POST['api_operation']);
-
-
-$update_api_q = "UPDATE api_data SET api_description = '$api_description', api_version = '$api_version', api_operations = '$api_operations' WHERE api_name = '$api_name'";
-mysqli_query($conn, $update_api_q);
-
-		if($_FILES['csv_data']['name']){
+			if($_FILES['csv_data']['name']){
 			
 			$arrFileName = explode('.',$_FILES['csv_data']['name']);
 			if($arrFileName[1] == 'csv'){
@@ -236,6 +227,15 @@ mysqli_query($conn, $update_api_q);
 				fclose($handle);
 			}
 		}
+	
+$api_name = sanitize_text_field($_POST['data']);
+$api_description = sanitize_text_field($_POST['api_description']);
+$api_version = sanitize_text_field($_POST['api_version']);
+$api_operations = sanitize_text_field($_POST['api_operation']);
+
+
+$update_api_q = "UPDATE api_data SET api_description = '$api_description', api_version = '$api_version', api_operations = '$api_operations' WHERE api_name = '$api_name'";
+mysqli_query($conn, $update_api_q);
 	
         $succuss_url_redirect = admin_url( "admin.php?page=create-db-tables&update_table_success=true" );
         wp_redirect( $succuss_url_redirect );
