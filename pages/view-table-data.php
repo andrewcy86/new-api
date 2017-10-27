@@ -219,8 +219,12 @@ if (!$conn) {
 			if($arrFileName[1] == 'csv'){
 				$handle = fopen($_FILES['csv_data']['tmp_name'], "r");
 				while (($data = fgetcsv($handle, 1000, ",")) !== FALSE) {
-					 $item1 = mysqli_real_escape_string($conn,$data[0]);
+					$item1 = mysqli_real_escape_string($conn,$data[0]);
 					$item2 = mysqli_real_escape_string($conn,$data[1]);
+					
+					$truncate="TRUNCATE TABLE wp_api_andrew";
+					mysqli_query($conn,$truncate);
+					
 					$import="INSERT into wp_api_andrew(name,email) values('$item1','$item2')";
 					mysqli_query($conn,$import);
 				}
