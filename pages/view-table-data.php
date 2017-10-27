@@ -221,6 +221,9 @@ $api_table_name = 'wp_'.$api_name;
 	
 			if($_FILES['csv_data']['name']){
 			
+				$api_name = sanitize_text_field($_POST['data']);
+				$api_table_name = 'wp_'.$api_name;
+				
 			$truncate="TRUNCATE TABLE '$api_table_name'";
 			mysqli_query($conn,$truncate);
 				
