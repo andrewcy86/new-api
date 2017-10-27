@@ -213,9 +213,15 @@ if (!$conn) {
     die("Connection failed: " . mysqli_connect_error());
 }
 
+$api_name = sanitize_text_field($_POST['data']);
+$api_description = sanitize_text_field($_POST['api_description']);
+$api_version = sanitize_text_field($_POST['api_version']);
+$api_operations = sanitize_text_field($_POST['api_operation']);
+$api_table_name = 'wp_'.$api_name;
+	
 			if($_FILES['csv_data']['name']){
 			
-			$truncate="TRUNCATE TABLE wp_api_andrew";
+			$truncate="TRUNCATE TABLE $api_table_name";
 			mysqli_query($conn,$truncate);
 				
 			$arrFileName = explode('.',$_FILES['csv_data']['name']);
@@ -226,18 +232,12 @@ if (!$conn) {
 					$item1 = mysqli_real_escape_string($conn,$data[0]);
 					$item2 = mysqli_real_escape_string($conn,$data[1]);
 					
-					$import="INSERT into wp_api_andrew(name,email) values('$item1','$item2')";
+					$import="INSERT into $api_table_name(name,email) values('$item1','$item2')";
 					mysqli_query($conn,$import);
 				}
 				fclose($handle);
 			}
 		}
-	
-$api_name = sanitize_text_field($_POST['data']);
-$api_description = sanitize_text_field($_POST['api_description']);
-$api_version = sanitize_text_field($_POST['api_version']);
-$api_operations = sanitize_text_field($_POST['api_operation']);
-
 
 $update_api_q = "UPDATE api_data SET api_description = '$api_description', api_version = '$api_version', api_operations = '$api_operations' WHERE api_name = '$api_name'";
 mysqli_query($conn, $update_api_q);
