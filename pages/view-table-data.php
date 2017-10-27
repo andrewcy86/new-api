@@ -229,10 +229,11 @@ $api_operations = sanitize_text_field($_POST['api_operation']);
 			if($arrFileName[1] == 'csv'){
 				$handle = fopen($_FILES['csv_data']['tmp_name'], "r");
 				while (($data = fgetcsv($handle, 1000, ",")) !== FALSE) {
+					
 					$item1 = mysqli_real_escape_string($conn,$data[0]);
 					$item2 = mysqli_real_escape_string($conn,$data[1]);
 					
-					$import = "INSERT INTO $api_table_name(Name, Email) VALUES ('$item1','$item2')";
+					$import = "INSERT INTO $api_table_name VALUES ('$item1','$item2')";
 					
 					mysqli_query($conn,$import);
 				}
