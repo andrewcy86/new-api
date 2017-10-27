@@ -230,11 +230,36 @@ $api_operations = sanitize_text_field($_POST['api_operation']);
 				$handle = fopen($_FILES['csv_data']['tmp_name'], "r");
 				while (($data = fgetcsv($handle, 1000, ",")) !== FALSE) {
 					
-					$item1 = mysqli_real_escape_string($conn,$data[0]);
-					$item2 = mysqli_real_escape_string($conn,$data[1]);
+$get_column_count = ("select count(*) AS colTotal FROM information_schema.columns WHERE table_name = $api_table_name");
+// Show column count
+$column_count_result = mysqli_query($conn, $get_column_count);
+$col_count = $column_count_result->fetch_object()->colTotal;
+
+$get_column_name = "SHOW COLUMNS FROM $api_table_name";
+$col_name = mysqli_query($conn, $get_column_name);
+
+while($row = $col_name->fetch_assoc()){
+    $columns[] = $row['Field'];
+}
+
+$column_name_final = implode(', ', array_slice($columns, 1));
+
+
+
+//echo $col_count;
+$i = -1;
+$s = 0;
+$item_list = '';
+for ($k = 0 ; $k < $col_count; $k++){ 
+
+$i++; 
+$s++;
+${'item' . $s} = mysqli_real_escape_string($conn,$data['.$i.']);
+}
+
+$import = "INSERT INTO $api_table_name('$column_name_final') VALUES ('$item1','$item2')";
 					
-					$import = "INSERT INTO $api_table_name VALUES ('$item1','$item2')";
-					
+
 					mysqli_query($conn,$import);
 				}
 				fclose($handle);
