@@ -220,8 +220,8 @@ $api_operations = sanitize_text_field($_POST['api_operation']);
 $api_table_name = 'wp_api_'.$api_name;
 	
 			if($_FILES['csv_data']['name']){
-echo $api_table_name;
-			$truncate="TRUNCATE TABLE $api_table_name";
+//echo $api_table_name;
+			$truncate="TRUNCATE TABLE wp_api_andrew";
 			mysqli_query($conn,$truncate);
 				
 			$arrFileName = explode('.',$_FILES['csv_data']['name']);
