@@ -232,8 +232,8 @@ $api_operations = sanitize_text_field($_POST['api_operation']);
 					$item1 = mysqli_real_escape_string($conn,$data[0]);
 					$item2 = mysqli_real_escape_string($conn,$data[1]);
 					
-					//$import="INSERT into '$api_table_name'(name,email) values('$item1','$item2')";
-					//mysqli_query($conn,$import);
+					$import="INSERT into $api_table_name(name,email) values('$item1','$item2')";
+					mysqli_query($conn,$import);
 				}
 				fclose($handle);
 			}
