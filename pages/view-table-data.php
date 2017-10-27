@@ -217,11 +217,10 @@ $api_name = sanitize_text_field($_POST['data']);
 $api_description = sanitize_text_field($_POST['api_description']);
 $api_version = sanitize_text_field($_POST['api_version']);
 $api_operations = sanitize_text_field($_POST['api_operation']);
-
+$api_table_name = 'wp_api_'.$api_name;
 	
 			if($_FILES['csv_data']['name']){
-$api_name = sanitize_text_field($_POST['data']);
-$api_table_name = 'wp_api_'.$api_name;
+				
 			$truncate="TRUNCATE TABLE '$api_table_name'";
 			mysqli_query($conn,$truncate);
 				
@@ -233,8 +232,8 @@ $api_table_name = 'wp_api_'.$api_name;
 					$item1 = mysqli_real_escape_string($conn,$data[0]);
 					$item2 = mysqli_real_escape_string($conn,$data[1]);
 					
-					$import="INSERT into '$api_table_name'(name,email) values('$item1','$item2')";
-					mysqli_query($conn,$import);
+					//$import="INSERT into '$api_table_name'(name,email) values('$item1','$item2')";
+					//mysqli_query($conn,$import);
 				}
 				fclose($handle);
 			}
