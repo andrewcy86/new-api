@@ -131,12 +131,18 @@ $api_operations = $row["api_operations"];
 
 <div class="clear"></div>
 
-		
+<fieldset class="row-fieldset" id="csv_upload">
+Upload CSV: <input type='file' name='csv_data' /> <input type='submit' name='submit' value='Upload CSV' />
+</fieldset>
+
+<div class="clear"></div>
+	    
   <input type="hidden" name="action" value="update_db_table">
   <input type="hidden" name="data" value="<?php echo $api_name ?>">
 <fieldset class="row-fieldset" id="api-submit">
 <button type="submit" >Update API</button>
 </fieldset>
+
 
 
 </form>
@@ -216,7 +222,21 @@ $api_operations = sanitize_text_field($_POST['api_operation']);
 $update_api_q = "UPDATE api_data SET api_description = '$api_description', api_version = '$api_version', api_operations = '$api_operations' WHERE api_name = '$api_name'";
 mysqli_query($conn, $update_api_q);
 
-		
+		if($_FILES['csv_data']['name']){
+			
+			$arrFileName = explode('.',$_FILES['csv_data']['name']);
+			if($arrFileName[1] == 'csv'){
+				$handle = fopen($_FILES['csv_data']['tmp_name'], "r");
+				while (($data = fgetcsv($handle, 1000, ",")) !== FALSE) {
+					 $item1 = mysqli_real_escape_string($conn,$data[0]);
+					$item2 = mysqli_real_escape_string($conn,$data[1]);
+					$import="INSERT into wp_api_andrew(name,email) values('$item1','$item2')";
+					mysqli_query($conn,$import);
+				}
+				fclose($handle);
+			}
+		}
+	
         $succuss_url_redirect = admin_url( "admin.php?page=create-db-tables&update_table_success=true" );
         wp_redirect( $succuss_url_redirect );
 
