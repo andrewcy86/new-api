@@ -221,7 +221,7 @@ $api_table_name = 'wp_'.$api_name;
 	
 			if($_FILES['csv_data']['name']){
 			
-			$truncate="TRUNCATE TABLE $api_table_name";
+			$truncate="TRUNCATE TABLE '$api_table_name'";
 			mysqli_query($conn,$truncate);
 				
 			$arrFileName = explode('.',$_FILES['csv_data']['name']);
@@ -232,7 +232,7 @@ $api_table_name = 'wp_'.$api_name;
 					$item1 = mysqli_real_escape_string($conn,$data[0]);
 					$item2 = mysqli_real_escape_string($conn,$data[1]);
 					
-					$import="INSERT into $api_table_name(name,email) values('$item1','$item2')";
+					$import="INSERT into '$api_table_name'(name,email) values('$item1','$item2')";
 					mysqli_query($conn,$import);
 				}
 				fclose($handle);
