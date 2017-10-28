@@ -247,15 +247,15 @@ $column_name_final = implode(', ', array_slice($columns, 1));
 
 
 //echo $col_count;
-$i = -1;
-$s = 0;
-$item_list = '';
-for ($k = 0 ; $k < $col_count; $k++){ 
+//$i = -1;
+//$s = 0;
+//$item_list = '';
+//for ($k = 0 ; $k < $col_count; $k++){ 
 
-$i++; 
-$s++;
+//$i++; 
+//$s++;
 //${'item' . $s} = mysqli_real_escape_string($conn,$data['.$i.']);
-}
+//}
 
 $item1 = mysqli_real_escape_string($conn,$data[0]);
 $item2 = mysqli_real_escape_string($conn,$data[1]);
