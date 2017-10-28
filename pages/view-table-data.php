@@ -256,16 +256,16 @@ $i++;
 $s++;
 ${'item' . $s} = mysqli_real_escape_string($conn,$data['.$i.']);
 }
-
-$import = "INSERT INTO $api_table_name('$column_name_final') VALUES (
+					
+$item_list = '';
 for ($k = 0 ; $k < $col_count; $k++){ 
 
 $s++;
-"'".${'item' . $s}."',"
+$item_list .= "'".${'item' . $s}."',";
 
 }
 
-)";
+$import = "INSERT INTO $api_table_name('$column_name_final') VALUES ($item_list)";
 					
 
 					mysqli_query($conn,$import);
