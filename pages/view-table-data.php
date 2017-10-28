@@ -233,7 +233,7 @@ $api_operations = sanitize_text_field($_POST['api_operation']);
 $get_column_count = ("select count(*) AS colTotal FROM information_schema.columns WHERE table_name = $api_table_name");
 // Show column count
 $column_count_result = mysqli_query($conn, $get_column_count);
-//$col_count = $column_count_result->fetch_object()->colTotal;
+$col_count = $column_count_result->fetch_object()->colTotal;
 
 //$get_column_name = "SHOW COLUMNS FROM $api_table_name";
 //$col_name = mysqli_query($conn, $get_column_name);
