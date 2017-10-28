@@ -257,7 +257,15 @@ $s++;
 ${'item' . $s} = mysqli_real_escape_string($conn,$data['.$i.']);
 }
 
-$import = "INSERT INTO $api_table_name('$column_name_final') VALUES ('$item1','$item2')";
+$import = "INSERT INTO $api_table_name('$column_name_final') VALUES (
+for ($k = 0 ; $k < $col_count; $k++){ 
+
+$s++;
+"'".${'item' . $s}."',"
+
+}
+
+)";
 					
 
 					mysqli_query($conn,$import);
