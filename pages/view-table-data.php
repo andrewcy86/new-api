@@ -235,14 +235,14 @@ $get_column_count = ("select count(*) AS colTotal FROM information_schema.column
 $column_count_result = mysqli_query($conn, $get_column_count);
 $col_count = $column_count_result->fetch_object()->colTotal;
 
-$get_column_name = "SHOW COLUMNS FROM $api_table_name";
-$col_name = mysqli_query($conn, $get_column_name);
+//$get_column_name = "SHOW COLUMNS FROM $api_table_name";
+//$col_name = mysqli_query($conn, $get_column_name);
 
-while($row = $col_name->fetch_assoc()){
-    $columns[] = $row['Field'];
-}
+//while($row = $col_name->fetch_assoc()){
+  //  $columns[] = $row['Field'];
+//}
 
-$column_name_final = implode(', ', array_slice($columns, 1));
+//$column_name_final = implode(', ', array_slice($columns, 1));
 
 
 
