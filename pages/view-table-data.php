@@ -239,18 +239,18 @@ $column_name_final = implode(',', array_slice($columns, 1));
 $get_column_count = mysqli_query($conn, "SELECT * FROM $api_table_name");
 $col_count = mysqli_num_fields($get_column_count);
 
-$i = -1;
-$s = 0;
 
 			if($arrFileName[1] == 'csv'){
 				$handle = fopen($_FILES['csv_data']['tmp_name'], "r");
 				while (($data = fgetcsv($handle, 1000, ",")) !== FALSE) {
-				
-for ($k = 0 ; $k <= $col_count; $k++){ 
+
+
+$i = -1;
+$s = 0;
+for ($k = 0 ; $k < $col_count; $k++){ 
 $i++; 
 $s++;
-$item1 = mysqli_real_escape_string($conn,$data[0]);
-    $item[$s] = mysqli_real_escape_string($conn,$data[$i]);
+$item[$s] = 'test';
 }
 					
 
