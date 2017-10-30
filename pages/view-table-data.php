@@ -132,7 +132,7 @@ $api_operations = $row["api_operations"];
 <div class="clear"></div>
 
 <fieldset class="row-fieldset" id="csv_upload">
-Upload CSV: <input type='file' name='csv_data' /> <input type='submit' name='submit' value='Upload CSV' />
+Upload CSV: <input type='file' name='csv_data' />
 </fieldset>
 
 <div class="clear"></div>
@@ -260,7 +260,7 @@ $column_name_final = implode(', ', array_slice($columns, 1));
 $item1 = mysqli_real_escape_string($conn,$data[0]);
 $item2 = mysqli_real_escape_string($conn,$data[1]);
 					
-$import = "INSERT INTO $api_table_name('name','email') VALUES ('$item1','$item2')";
+$import = "INSERT INTO $api_table_name(name,email) VALUES ('$item1','$item2')";
 					
 
 					mysqli_query($conn,$import);
