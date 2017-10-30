@@ -258,8 +258,8 @@ array_push($values, mysqli_real_escape_string($conn,$data[$i]));
 					
 //$item1 = mysqli_real_escape_string($conn,$data[0]);
 //$item2 = mysqli_real_escape_string($conn,$data[1]);
-					
-$import = "INSERT INTO $api_table_name($column_name_final) VALUES (" . implode(",", $values) . ");";
+$values  = implode(", ", $values);					
+$import = "INSERT INTO $api_table_name($column_name_final) VALUES ($values)";
 					
 
 					mysqli_query($conn,$import);
