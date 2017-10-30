@@ -247,12 +247,11 @@ $col_count = mysqli_num_fields($get_column_count)-1;
 
 $s = 0;
 $i = -1;
-$values = '';
 for ($k = 0 ; $k < $col_count; $k++){ 
 $i++;
 $s++;
 $item[$s] = mysqli_real_escape_string($conn,$data[$i]);
-$values .= "'" . $item[$s] . "',";
+//$values .= "'" . $item[$s] . "',";
 }
 					
 //$item1 = mysqli_real_escape_string($conn,$data[0]);
@@ -260,7 +259,7 @@ $values .= "'" . $item[$s] . "',";
 //$values  = implode(", ", $values);
 					
 
-$import = "INSERT INTO $api_table_name($column_name_final) VALUES ($values)";
+$import = "INSERT INTO $api_table_name($column_name_final) VALUES ('$item[1]','$item[2]')";
 					
 
 					mysqli_query($conn,$import);
@@ -275,8 +274,8 @@ mysqli_query($conn, $update_api_q);
 
 //echo "<script type='text/javascript'>alert('$values');</script>";
 	
-        //$succuss_url_redirect = admin_url( "admin.php?page=create-db-tables&update_table_success=true" );
-        //wp_redirect( $succuss_url_redirect );
+        $succuss_url_redirect = admin_url( "admin.php?page=create-db-tables&update_table_success=true" );
+        wp_redirect( $succuss_url_redirect );
 
 }
 ?>
