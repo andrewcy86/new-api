@@ -253,7 +253,7 @@ for ($k = 0 ; $k < $col_count; $k++){
 $i++;
 $s++;
 $item[$s] = mysqli_real_escape_string($conn,$data[$i]);
-$values .="'$item[". $s . "],";
+$values .= ''$item['. $s . ']',';
 }
 
 					
