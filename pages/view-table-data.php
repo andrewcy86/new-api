@@ -247,16 +247,11 @@ $col_count = mysqli_num_fields($get_column_count);
 
 $s = -1;
 $i = 0;				
-
+$values = '';
 for ($k = 0 ; $k < $col_count; $k++){ 
 $i++;
 $s++;
 $item[$s] = mysqli_real_escape_string($conn,$data[$i]);
-}
-
-$values = '';
-for ($k = 0 ; $k < $col_count; $k++){ 
-$s++;
 $values .= $item[$s] . ',';
 }
 					
