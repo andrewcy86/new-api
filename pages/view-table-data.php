@@ -253,6 +253,7 @@ $s++;
 $item[$s] = 'test';
 }
 					
+$item[1] = 'test';
 
 //$item1 = mysqli_real_escape_string($conn,$data[0]);
 //$item2 = mysqli_real_escape_string($conn,$data[1]);
