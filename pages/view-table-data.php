@@ -270,6 +270,9 @@ $import = "INSERT INTO $api_table_name($column_name_final) VALUES ($values)";
 
 $update_api_q = "UPDATE api_data SET api_description = '$api_description', api_version = '$api_version', api_operations = '$api_operations' WHERE api_name = '$api_name'";
 mysqli_query($conn, $update_api_q);
+
+
+echo "<script type='text/javascript'>alert('$values');</script>";
 	
         $succuss_url_redirect = admin_url( "admin.php?page=create-db-tables&update_table_success=true" );
         wp_redirect( $succuss_url_redirect );
