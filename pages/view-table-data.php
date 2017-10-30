@@ -245,7 +245,7 @@ $col_count = mysqli_num_fields($get_column_count);
 				while (($data = fgetcsv($handle, 1000, ",")) !== FALSE) {
 
 
-$s = -1
+$s = -1;
 $i = 0;
 $values = '';					
 
