@@ -236,11 +236,9 @@ while($row = $col_name->fetch_assoc()){
 $column_name_final = implode(',', array_slice($columns, 1));
 				
 //Determine Number of Columns
-$get_column_count = ("select count(*) FROM information_schema.columns WHERE table_name = $api_table_name");
-//$column_count_result = mysqli_query($conn, $get_column_count);				
-$column_count_result = $conn->query($get_column_count);
-$col_row = $column_count_result->fetch_row();
-$col_count = $col_row[0];
+$get_column_count = mysqli_query($conn, "SELECT * FROM $api_table_name");
+$col_count = mysqli_num_fields($get_column_count);
+
 
 			if($arrFileName[1] == 'csv'){
 				$handle = fopen($_FILES['csv_data']['tmp_name'], "r");
