@@ -247,17 +247,21 @@ $col_count = mysqli_num_fields($get_column_count);
 
 $i = -1;
 $s = 0;
+					
+$value_string = ''
 for ($k = 0 ; $k < $col_count; $k++){ 
 $i++; 
 $s++;
 $item[$s] = mysqli_real_escape_string($conn,$data[$i]);
+	
+$value_string .= "'" . $item[$s] . "',";
 }
 
 					
 //$item1 = mysqli_real_escape_string($conn,$data[0]);
 //$item2 = mysqli_real_escape_string($conn,$data[1]);
 					
-$import = "INSERT INTO $api_table_name($column_name_final) VALUES ('$item[1]','$item[2]')";
+$import = "INSERT INTO $api_table_name($column_name_final) VALUES ('$value_string','$item[2]')";
 					
 
 					mysqli_query($conn,$import);
