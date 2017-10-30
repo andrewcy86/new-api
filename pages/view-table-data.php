@@ -246,8 +246,7 @@ $col_count = mysqli_num_fields($get_column_count);
 
 
 $s = -1;
-$i = 0;				
-$values = '';
+$i = 0;		
 for ($k = 0 ; $k < $col_count; $k++){ 
 $i++;
 $s++;
@@ -258,8 +257,8 @@ $item[$s] = mysqli_real_escape_string($conn,$data[$i]);
 //$item2 = mysqli_real_escape_string($conn,$data[1]);
 //$values  = implode(", ", $values);
 					
-$values .= $item[1] . ',' . $item[2];
-$import = "INSERT INTO $api_table_name($column_name_final) VALUES ($values)";
+
+$import = "INSERT INTO $api_table_name($column_name_final) VALUES ('$item[1]','$item[2]')";
 					
 
 					mysqli_query($conn,$import);
