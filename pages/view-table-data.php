@@ -274,8 +274,8 @@ mysqli_query($conn, $update_api_q);
 
 echo "<script type='text/javascript'>alert('$values');</script>";
 	
-        $succuss_url_redirect = admin_url( "admin.php?page=create-db-tables&update_table_success=true" );
-        wp_redirect( $succuss_url_redirect );
+        //$succuss_url_redirect = admin_url( "admin.php?page=create-db-tables&update_table_success=true" );
+        //wp_redirect( $succuss_url_redirect );
 
 }
 ?>
