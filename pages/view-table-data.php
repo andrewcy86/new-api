@@ -239,15 +239,13 @@ $column_name_final = implode(',', array_slice($columns, 1));
 $get_column_count = mysqli_query($conn, "SELECT * FROM $api_table_name");
 $col_count = mysqli_num_fields($get_column_count);
 
+$i = -1;
+$s = 0;
 
 			if($arrFileName[1] == 'csv'){
 				$handle = fopen($_FILES['csv_data']['tmp_name'], "r");
 				while (($data = fgetcsv($handle, 1000, ",")) !== FALSE) {
 
-
-$i = -1;
-$s = 0;
-$item_list = '';
 for ($k = 0 ; $k < $col_count; $k++){ 
 $i++; 
 $s++;
