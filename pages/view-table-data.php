@@ -246,16 +246,19 @@ $col_count = mysqli_num_fields($get_column_count);
 
 
 $s = -1;
-$i = 0;
-$values = '';					
+$i = 0;				
 
 for ($k = 0 ; $k < $col_count; $k++){ 
 $i++;
 $s++;
 $item[$s] = mysqli_real_escape_string($conn,$data[$i]);
-$values .= ''$item['. $s . ']',';
 }
 
+$value = '';
+for ($k = 0 ; $k < $col_count; $k++){ 
+$s++;
+$value .= $item[$s] . ',';
+}
 					
 //$item1 = mysqli_real_escape_string($conn,$data[0]);
 //$item2 = mysqli_real_escape_string($conn,$data[1]);
