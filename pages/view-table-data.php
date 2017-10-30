@@ -245,12 +245,14 @@ $col_count = mysqli_num_fields($get_column_count);
 				while (($data = fgetcsv($handle, 1000, ",")) !== FALSE) {
 
 
-$s = -1;
-$i = 0;		
+$s = 0;
+$i = -1;
+$values = '';
 for ($k = 0 ; $k < $col_count; $k++){ 
 $i++;
 $s++;
 $item[$s] = mysqli_real_escape_string($conn,$data[$i]);
+$values .= "'" . $item[$s] . "',";
 }
 					
 //$item1 = mysqli_real_escape_string($conn,$data[0]);
