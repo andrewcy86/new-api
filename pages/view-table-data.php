@@ -254,7 +254,7 @@ $i++;
 $s++;
 $item[$s] = mysqli_real_escape_string($conn,$data[$i]);
 	
-$value_string .= "'" . $item[$s] . "',";
+$value_string .= "'$item[" . $s . "]',";
 }
 
 					
