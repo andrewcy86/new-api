@@ -250,13 +250,13 @@ $s = 0;
 for ($k = 0 ; $k < $col_count; $k++){ 
 $i++; 
 $s++;
-$item . $s = 'test';
+$item[$s] = 'test';
 }
 
 //$item1 = mysqli_real_escape_string($conn,$data[0]);
 //$item2 = mysqli_real_escape_string($conn,$data[1]);
 					
-$import = "INSERT INTO $api_table_name($column_name_final) VALUES ('$item1','$item2')";
+$import = "INSERT INTO $api_table_name($column_name_final) VALUES ('$item[1]','$item[2]')";
 					
 
 					mysqli_query($conn,$import);
