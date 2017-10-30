@@ -237,7 +237,7 @@ $column_name_final = implode(',', array_slice($columns, 1));
 				
 //Determine Number of Columns
 $get_column_count = mysqli_query($conn, "SELECT * FROM $api_table_name");
-$col_count = mysqli_num_fields($get_column_count);
+$col_count = mysqli_num_fields($get_column_count)-1;
 
 
 			if($arrFileName[1] == 'csv'){
@@ -260,7 +260,7 @@ $values .= "'" . $item[$s] . "',";
 //$values  = implode(", ", $values);
 					
 
-$import = "INSERT INTO $api_table_name($column_name_final) VALUES ('$item[1]','$item[2]')";
+$import = "INSERT INTO $api_table_name($column_name_final) VALUES ($values)";
 					
 
 					mysqli_query($conn,$import);
@@ -273,7 +273,7 @@ $update_api_q = "UPDATE api_data SET api_description = '$api_description', api_v
 mysqli_query($conn, $update_api_q);
 
 
-echo "<script type='text/javascript'>alert('$values');</script>";
+//echo "<script type='text/javascript'>alert('$values');</script>";
 	
         //$succuss_url_redirect = admin_url( "admin.php?page=create-db-tables&update_table_success=true" );
         //wp_redirect( $succuss_url_redirect );
