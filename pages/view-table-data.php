@@ -250,10 +250,8 @@ $s = 0;
 for ($k = 0 ; $k < $col_count; $k++){ 
 $i++; 
 $s++;
-$item[$s] = 'test';
+$item . $s = 'test';
 }
-					
-$item1 = 'test';
 
 //$item1 = mysqli_real_escape_string($conn,$data[0]);
 //$item2 = mysqli_real_escape_string($conn,$data[1]);
