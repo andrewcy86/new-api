@@ -248,7 +248,7 @@ $col_count = mysqli_num_fields($get_column_count);
 $i = -1;
 $s = 0;
 					
-$value_string = ''
+$value_string = '';
 for ($k = 0 ; $k < $col_count; $k++){ 
 $i++; 
 $s++;
