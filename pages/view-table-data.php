@@ -244,21 +244,20 @@ $col_count = mysqli_num_fields($get_column_count);
 				$handle = fopen($_FILES['csv_data']['tmp_name'], "r");
 				while (($data = fgetcsv($handle, 1000, ",")) !== FALSE) {
 
-//echo $col_count;
-//$i = -1;
-//$s = 0;
-//$item_list = '';
-//for ($k = 0 ; $k < $col_count; $k++){ 
 
-//$i++; 
-//$s++;
-//${'item' . $s} = mysqli_real_escape_string($conn,$data['.$i.']);
-//}
+$i = -1;
+$s = 0;
+$item_list = '';
+for ($k = 0 ; $k < $col_count; $k++){ 
+$i++; 
+$s++;
+${'item' . $s} = mysqli_real_escape_string($conn,$data['.$i.']);
+}
 
-$item1 = mysqli_real_escape_string($conn,$data[0]);
-$item2 = mysqli_real_escape_string($conn,$data[1]);
+//$item1 = mysqli_real_escape_string($conn,$data[0]);
+//$item2 = mysqli_real_escape_string($conn,$data[1]);
 					
-$import = "INSERT INTO $api_table_name($column_name_final) VALUES ('$item1','$col_count')";
+$import = "INSERT INTO $api_table_name($column_name_final) VALUES ('$item1','$item2')";
 					
 
 					mysqli_query($conn,$import);
