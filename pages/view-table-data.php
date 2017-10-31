@@ -259,7 +259,7 @@ $item[$s] = mysqli_real_escape_string($conn,$data[$i]);
 //$values  = implode(", ", $values);
 					
 
-$import = "INSERT INTO $api_table_name($column_name_final) VALUES ('$item[1]','$item[2]')";
+$import = "INSERT INTO $api_table_name($column_name_final) VALUES ('$item[1]','$item[2]','$item[3]','$item[4]','$item[5]')";
 					
 
 					mysqli_query($conn,$import);
