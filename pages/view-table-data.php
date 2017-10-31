@@ -4,88 +4,85 @@
  * Since: 1.2.0
  */
 
-if (!defined('ABSPATH')) exit;
+if ( ! defined( 'ABSPATH' ) ) exit;
 
-function cdbt_view_table_data()
-	{
-	$query_string = $_SERVER['QUERY_STRING'];
+function cdbt_view_table_data() { 
 
-	// $table is equal to the table name
+    $query_string = $_SERVER['QUERY_STRING'];
 
-	parse_str($query_string);
-	$safe_table_name = sanitize_text_field($view_table);
-	cdbt_view_table_data_page_styles();
-?>
+    // $table is equal to the table name
+    parse_str($query_string);
+    
+    $safe_table_name = sanitize_text_field($view_table);
+
+    cdbt_view_table_data_page_styles();
+    
+    ?>
     
     <div class="wrap">
         <h2>Edit API Information
-           <a href="<?php
-	echo admin_url('admin.php?page=create-db-tables'); ?>" class="page-title-action">
+           <a href="<?php echo admin_url('admin.php?page=create-db-tables'); ?>" class="page-title-action">
 			 Back
            </a>
         </h2>
         
         <?php
+    
+
 	global $conn;
+// Check connection
+if (!$conn) {
+    die("Connection failed: " . mysqli_connect_error());
+}
+            
+        /**
+         * Select Table Names
+         */
+$query = "SELECT id, api_name, api_description, api_version, api_table, api_operations FROM api_data WHERE api_name = '$safe_table_name'";
 
-	// Check connection
+$result = $conn->query($query);
 
-	if (!$conn)
-		{
-		die("Connection failed: " . mysqli_connect_error());
-		}
+if ($result->num_rows > 0) {
+  
+    while($row = $result->fetch_assoc()) {
+$api_name = $row["api_name"];
+$api_description = $row["api_description"];
+$api_version = $row["api_version"];
+$api_table = $row["api_table"];
+$api_operations = $row["api_operations"];
+     }
 
-	/**
-	 * Select Table Names
-	 */
-	$query = "SELECT id, api_name, api_description, api_version, api_table, api_operations FROM api_data WHERE api_name = '$safe_table_name'";
-	$result = $conn->query($query);
-	if ($result->num_rows > 0)
-		{
-		while ($row = $result->fetch_assoc())
-			{
-			$api_name = $row["api_name"];
-			$api_description = $row["api_description"];
-			$api_version = $row["api_version"];
-			$api_table = $row["api_table"];
-			$api_operations = $row["api_operations"];
-			}
-		}
+}
+        
 
-?>
+        ?>
 
         
         <section style="margin-top: 30px;">
 	
-            <h3>API - <?php
-	echo $view_table ?></h3>
+            <h3>API - <?php echo $view_table ?></h3>
 
-<form action="<?php
-	echo admin_url('admin-post.php'); ?>" method="post" enctype="multipart/form-data">
+<form action="<?php echo admin_url('admin-post.php'); ?>" method="post" enctype="multipart/form-data">
 
 			<fieldset class="row-fieldset" id="table-name">
 				<label id="table-name">Name:</label>
 				<!-- EPA Added API Prefix -->
 				<span style="position: relative; top: 2px;">
 				
-<?php
-	echo $prefix; ?>api_<?php
-	echo $api_name; ?></span></span>
+<?php echo $prefix; ?>api_<?php echo $api_name; ?></span></span>
 			</fieldset>
 <div class="clear"></div>
 			
 			<!-- EPA Added API Description -->
 			<fieldset class="row-fieldset" id="api-description">
 				<label id="api-description">Drescription:</label>
-			    <textarea type="text" class="api-field" name="api_description" rows="3" cols="30" maxlength="255" id="api_description"><?php
-	echo $api_description; ?></textarea>
+			    <textarea type="text" class="api-field" name="api_description" rows="3" cols="30" maxlength="255" id="api_description"><?php echo $api_description; ?></textarea>
 			</fieldset>
 <div class="clear"></div>
 			<!-- EPA Added API Version -->
 			<fieldset class="row-fieldset" id="api-version">
 				<label id="api-version">Version:</label>
-			    <input type="text" class="api-field" name="api_version" size="10" id="api-version" value="<?php
-	echo $api_version; ?>">
+			    <input type="text" class="api-field" name="api_version" size="10" id="api-version" value="<?php echo $api_version; ?>">
 			</fieldset>
 <div class="clear"></div>			
 			
@@ -93,41 +90,23 @@ function cdbt_view_table_data()
 <label id="api-version">Operation(s):</label>
 <select class="api-field" name="api_operation" id="api-operation">
 
-<?php
-	if ($api_operations == 'list')
-		{ ?>
+<?php if ($api_operations == 'list') { ?>
   <option value="list" selected>List</option>
-<?php
-		}
-	  else
-		{ ?>
+<?php } else { ?>
   <option value="list">List</option>
-<?php
-		} ?>
+<?php } ?>
 
-<?php
-	if ($api_operations == 'read')
-		{ ?>
+<?php if ($api_operations == 'read') { ?>
   <option value="read" selected>Read</option>
-<?php
-		}
-	  else
-		{ ?>
+<?php } else { ?>
   <option value="read">Read</option>
-<?php
-		} ?>
+<?php } ?>
 
-<?php
-	if ($api_operations == 'update')
-		{ ?>
+<?php if ($api_operations == 'update') { ?>
   <option value="read, update" selected>Write/Update</option>
-<?php
-		}
-	  else
-		{ ?>
+<?php } else { ?>
   <option value="read, update">Write/Update</option>
-<?php
-		} ?>
+<?php } ?>
 
 
 </select>
@@ -140,12 +119,10 @@ function cdbt_view_table_data()
 <label id="api-version">User(s):</label>
 <select class="api-users" name="api_users" id="api-users" multiple>
   <?php
-	$blogusers = get_users('blog_id=1&orderby=nicename&role=subscriber');
-	foreach($blogusers as $user)
-		{
-		echo '<option value="' . $user->user_email . '">' . $user->user_email . '</option>';
-		}
-
+    $blogusers = get_users('blog_id=1&orderby=nicename&role=subscriber');
+    foreach ($blogusers as $user) {
+        echo '<option value="' . $user->user_email . '">'. $user->user_email .'</option>';
+    }
 ?>
 
 </select>
@@ -161,8 +138,7 @@ Upload CSV: <input type='file' name='csv_data' />
 <div class="clear"></div>
 	    
   <input type="hidden" name="action" value="update_db_table">
-  <input type="hidden" name="data" value="<?php
-	echo $api_name ?>">
+  <input type="hidden" name="data" value="<?php echo $api_name ?>">
 <fieldset class="row-fieldset" id="api-submit">
 <button type="submit" >Update API</button>
 </fieldset>
@@ -174,12 +150,10 @@ Upload CSV: <input type='file' name='csv_data' />
 						
     </div>
 
-<?php
-	} // END cdbt_view_table_data
+<?php } // END cdbt_view_table_data
 
-function cdbt_view_table_data_page_styles()
-	{
-?>
+function cdbt_view_table_data_page_styles() {
+	?>
 <style>
 /* EPA API name and Description Added */
 	.api-field, #table-name,
@@ -223,99 +197,88 @@ function cdbt_view_table_data_page_styles()
         margin-right: 20px;
 	}
 </style>
-<?php
-	}
+<?php } 
 
 // Update API data Database Table
+add_action( 'admin_post_update_db_table', 'cdbt_update_db_table' );
 
-add_action('admin_post_update_db_table', 'cdbt_update_db_table');
+function cdbt_update_db_table() {
 
-function cdbt_update_db_table()
-	{
-	global $conn;
-	global $safe_table_name;
+global $conn;
+global $safe_table_name;
 
-	// Check connection
 
-	if (!$conn)
-		{
-		die("Connection failed: " . mysqli_connect_error());
-		}
+// Check connection
+if (!$conn) {
+    die("Connection failed: " . mysqli_connect_error());
+}
 
-	$api_name = sanitize_text_field($_POST['data']);
-	$api_description = sanitize_text_field($_POST['api_description']);
-	$api_version = sanitize_text_field($_POST['api_version']);
-	$api_operations = sanitize_text_field($_POST['api_operation']);
-	if ($_FILES['csv_data']['name'])
-		{
-		$api_table_name = 'wp_api_' . $api_name;
+$api_name = sanitize_text_field($_POST['data']);
+$api_description = sanitize_text_field($_POST['api_description']);
+$api_version = sanitize_text_field($_POST['api_version']);
+$api_operations = sanitize_text_field($_POST['api_operation']);
 
-		// Begin update process by first truncating the table
+			if($_FILES['csv_data']['name']){
+			$api_table_name = 'wp_api_'.$api_name;
+				
+//Begin update process by first truncating the table
+			$truncate="TRUNCATE TABLE $api_table_name";
+			mysqli_query($conn,$truncate);
+				
+			$arrFileName = explode('.',$_FILES['csv_data']['name']);
 
-		$truncate = "TRUNCATE TABLE $api_table_name";
-		mysqli_query($conn, $truncate);
-		$arrFileName = explode('.', $_FILES['csv_data']['name']);
+//Determine Column Names
+$get_column_name = "SHOW COLUMNS FROM $api_table_name";
+$col_name = mysqli_query($conn, $get_column_name);
 
-		// Determine Column Names
+while($row = $col_name->fetch_assoc()){
+    $columns[] = $row['Field'];
+}
+$column_name_final = implode(',', array_slice($columns, 1));
+				
+//Determine Number of Columns
+$get_column_count = mysqli_query($conn, "SELECT * FROM $api_table_name");
+$col_count = mysqli_num_fields($get_column_count)-1;
 
-		$get_column_name = "SHOW COLUMNS FROM $api_table_name";
-		$col_name = mysqli_query($conn, $get_column_name);
-		while ($row = $col_name->fetch_assoc())
-			{
-			$columns[] = $row['Field'];
-			}
+//Check if CSV FILE is uploaded
+			if($arrFileName[1] == 'csv'){
+				$handle = fopen($_FILES['csv_data']['tmp_name'], "r");
+				while (($data = fgetcsv($handle, 1000, ",")) !== FALSE) {
 
-		$column_name_final = implode(',', array_slice($columns, 1));
+//Build the items based on what was uploaded
+$s = 0;
+$i = -1;
+for ($k = 0 ; $k <= $col_count; $k++){ 
+$i++;
+$s++;
+$item[$s] = mysqli_real_escape_string($conn,$data[$i]);
 
-		// Determine Number of Columns
+//Insert those items into the table					
+$myvars = '';
+for ($j=1; $j<=$col_count; $j++)
+{
+   $myvars .= "'".$item[$j]."',";   
+}
+$myvars = substr($myvars,0,-1);		
 
-		$get_column_count = mysqli_query($conn, "SELECT * FROM $api_table_name");
-		$col_count = mysqli_num_fields($get_column_count) - 1;
+$import = "INSERT INTO $api_table_name($column_name_final) VALUES (".$myvars.")";
+					
 
-		// Check if CSV FILE is uploaded
-
-		if ($arrFileName[1] == 'csv')
-			{
-			$handle = fopen($_FILES['csv_data']['tmp_name'], "r");
-			while (($data = fgetcsv($handle, 1000, ",")) !== FALSE)
-				{
-
-				// Build the items based on what was uploaded
-
-				$s = 0;
-				$i = - 1;
-				for ($k = 0; $k <= $col_count; $k++)
-					{
-					$i++;
-					$s++;
-					$item[$s] = mysqli_real_escape_string($conn, $data[$i]);
-
-					// Insert those items into the table
-
-					$myvars = '';
-					for ($j = 1; $j <= $col_count; $j++)
-						{
-						$myvars.= "'" . $item[$j] . "',";
-						}
-
-					$myvars = substr($myvars, 0, -1);
-					$import = "INSERT INTO $api_table_name($column_name_final) VALUES (" . $myvars . ")";
-					mysqli_query($conn, $import);
-					}
-
-				fclose($handle);
+					mysqli_query($conn,$import);
 				}
+				fclose($handle);
 			}
-
-		// Make any updates to the api metadata
-
-		$update_api_q = "UPDATE api_data SET api_description = '$api_description', api_version = '$api_version', api_operations = '$api_operations' WHERE api_name = '$api_name'";
-		mysqli_query($conn, $update_api_q);
-
-		// echo "<script type='text/javascript'>alert('$values');</script>";
-
-		$succuss_url_redirect = admin_url("admin.php?page=create-db-tables&update_table_success=true");
-		wp_redirect($succuss_url_redirect);
 		}
+				
+//Make any updates to the api metadata
+$update_api_q = "UPDATE api_data SET api_description = '$api_description', api_version = '$api_version', api_operations = '$api_operations' WHERE api_name = '$api_name'";
+mysqli_query($conn, $update_api_q);
 
+
+//echo "<script type='text/javascript'>alert('$values');</script>";
+	
+        $succuss_url_redirect = admin_url( "admin.php?page=create-db-tables&update_table_success=true" );
+        wp_redirect( $succuss_url_redirect );
+
+}
 ?>
