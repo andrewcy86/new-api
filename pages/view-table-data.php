@@ -137,6 +137,16 @@ Upload CSV: <input type='file' name='csv_data' />
 	    
   <input type="hidden" name="action" value="update_db_table">
   <input type="hidden" name="data" value="<?php echo $api_name ?>">
+		
+<?php
+$table = 'wp_api_'.$safe_table_name;
+$t_query = "SHOW TABLES LIKE '$table'";
+$t_result = $conn->query($t_query);
+
+$table_exists = mysql_num_rows($t_result) > 0;
+	
+
+?>
 <fieldset class="row-fieldset" id="api-submit">
 <button type="submit" >Update API</button>
 </fieldset>
