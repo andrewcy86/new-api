@@ -53,8 +53,12 @@ $api_operations = $row["api_operations"];
      }
 
 }
-        
 
+// Check to see if table exists
+$table = 'wp_api_'.$safe_table_name;
+if ($result = $mysqli->query("SHOW TABLES LIKE '".$table."'")) {
+    if($result->num_rows == 1) {
+	    
         ?>
 
         
@@ -151,6 +155,12 @@ Upload CSV: <input type='file' name='csv_data' />
     </div>
 
 <?php } // END cdbt_view_table_data
+	// END Check if Table Exists
+    }
+}
+else {
+    echo "Table was not properly configured and does not exists.";
+}
 
 function cdbt_view_table_data_page_styles() {
 	?>
