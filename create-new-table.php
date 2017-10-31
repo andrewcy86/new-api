@@ -162,8 +162,4 @@ file_put_contents($file, $content);
 	
 }
 
-// EPA Close Connection
-mysqli_close($conn);
-
-
 ?>
