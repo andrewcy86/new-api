@@ -220,14 +220,13 @@ $api_operations = sanitize_text_field($_POST['api_operation']);
 
 			if($_FILES['csv_data']['name']){
 			$api_table_name = 'wp_api_'.$api_name;
-				
-//Begin update process by first truncating the table
+// Begin Update Process by Truncating Table
 			$truncate="TRUNCATE TABLE $api_table_name";
 			mysqli_query($conn,$truncate);
 				
 			$arrFileName = explode('.',$_FILES['csv_data']['name']);
 
-//Determine Column Names
+// Determine Column Names
 $get_column_name = "SHOW COLUMNS FROM $api_table_name";
 $col_name = mysqli_query($conn, $get_column_name);
 
@@ -236,24 +235,25 @@ while($row = $col_name->fetch_assoc()){
 }
 $column_name_final = implode(',', array_slice($columns, 1));
 				
-//Determine Number of Columns
+// Determine Number of Columns
 $get_column_count = mysqli_query($conn, "SELECT * FROM $api_table_name");
 $col_count = mysqli_num_fields($get_column_count)-1;
 
-//Check if CSV FILE is uploaded
+
 			if($arrFileName[1] == 'csv'){
 				$handle = fopen($_FILES['csv_data']['tmp_name'], "r");
 				while (($data = fgetcsv($handle, 1000, ",")) !== FALSE) {
 
-//Build the items based on what was uploaded
+// Set Item Variables based on Data in Spreadsheet
 $s = 0;
 $i = -1;
 for ($k = 0 ; $k <= $col_count; $k++){ 
 $i++;
 $s++;
 $item[$s] = mysqli_real_escape_string($conn,$data[$i]);
+}			
 
-//Insert those items into the table					
+// Set values to Item Variables
 $myvars = '';
 for ($j=1; $j<=$col_count; $j++)
 {
@@ -269,8 +269,8 @@ $import = "INSERT INTO $api_table_name($column_name_final) VALUES (".$myvars.")"
 				fclose($handle);
 			}
 		}
-				
-//Make any updates to the api metadata
+
+// Update API Metadata
 $update_api_q = "UPDATE api_data SET api_description = '$api_description', api_version = '$api_version', api_operations = '$api_operations' WHERE api_name = '$api_name'";
 mysqli_query($conn, $update_api_q);
 
