@@ -120,7 +120,9 @@ if (mysqli_num_rows($t_result) > 0) {
 </fieldset>
 
 <div class="clear"></div>	
-
+<?php
+echo($api_users);
+?>
 <?php if( current_user_can('administrator') ) { ?>
 <fieldset class="row-fieldset" id="api-users">
 <label id="api-version">User(s):</label>
@@ -128,7 +130,6 @@ if (mysqli_num_rows($t_result) > 0) {
   <?php
     $blogusers = get_users('blog_id=1&orderby=nicename&role=subscriber');
     $user_selected = explode(',',$api_users);
-	print_r($user_selected);
     foreach ($blogusers as $user) {
 if (in_array($user->ID, $user_selected)) {
   echo '<option value="' . $user->ID . '" selected="selected">'. $user->user_email .'</option>';
