@@ -143,7 +143,7 @@ $table = 'wp_api_'.$safe_table_name;
 $t_query = "SHOW TABLES LIKE '$table'";
 $t_result = $conn->query($t_query);
 
-$table_exists = mysql_num_rows($t_result) > 0;
+$table_exists = mysqli_num_rows($t_result) > 0;
 	
 echo $table_exits;
 ?>
