@@ -120,9 +120,6 @@ if (mysqli_num_rows($t_result) > 0) {
 </fieldset>
 
 <div class="clear"></div>	
-<?php
-echo($api_users);
-?>
 <?php if( current_user_can('administrator') ) { ?>
 <fieldset class="row-fieldset" id="api-users">
 <label id="api-version">User(s):</label>
