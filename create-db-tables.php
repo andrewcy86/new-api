@@ -69,9 +69,11 @@ if (!$conn) {
 
 <div class="wrap">
 	<h2>API Management Dashboard 
+		<?php if( current_user_can('administrator') { ?>
 		<a href="<?php echo admin_url('admin.php?page=add-new-table'); ?>" class="page-title-action">
 			Add New API
 		</a>
+		<?php } ?>
 	</h2>
 	
 	<?php
@@ -152,7 +154,7 @@ if (!$conn) {
                 <tr class="db-list-header">
                     <th><h4>API Name</h4></th>
                     <?php // was column header for edit column <th></th> ?>
-                    <th></th>
+                    <?php if( current_user_can('administrator') { ?><th></th><?php } ?>
                 </tr>
                 <?php
 
@@ -176,13 +178,15 @@ echo '<tr><td>You have not created any APIs yet...</td></tr>';
                         <a class="table-links-edit" href="<?php echo admin_url($edit_table_url) ?>" title="<?php echo $row["api_name"] ?>">Edit</a>
                     </td>
                     */ ?>
-                    <td class="delete-col">
+                    <?php if( current_user_can('administrator') { ?>
+			<td class="delete-col">
                         <form action="<?php echo admin_url('admin-post.php'); ?>" method="post">
                             <input type="hidden" name="action" value="delete_db_table">
                             <input type="hidden" name="db_table" value="<?php echo $row["api_name"] ?>">
                             <button onclick="return confirm('Are you sure you want to delete this table? All the data inside the table will be permanently deleted. You will not be able to recover the deleted data.')" type="submit" class="table-links-delete">Delete</button>
                         </form>
                     </td>
+		   <?php } ?>
                 </tr>
 <?php } }?>
 
