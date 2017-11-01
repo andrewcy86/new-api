@@ -120,20 +120,21 @@ if (mysqli_num_rows($t_result) > 0) {
 
 <div class="clear"></div>	
 
-
+<?php if( current_user_can('administrator') ) { ?>
 <fieldset class="row-fieldset" id="api-users">
 <label id="api-version">User(s):</label>
 <select class="api-users" name="api_users" id="api-users" multiple>
   <?php
     $blogusers = get_users('blog_id=1&orderby=nicename&role=subscriber');
     foreach ($blogusers as $user) {
-        echo '<option value="' . $user->user_email . '">'. $user->user_email .'</option>';
+        echo '<option value="' . $user->user_id . '">'. $user->user_email .'</option>';
     }
 ?>
 
 </select>
 
 </fieldset>
+<?php } ?>
 
 <div class="clear"></div>
 
@@ -229,7 +230,8 @@ $api_name = sanitize_text_field($_POST['data']);
 $api_description = sanitize_text_field($_POST['api_description']);
 $api_version = sanitize_text_field($_POST['api_version']);
 $api_operations = sanitize_text_field($_POST['api_operation']);
-
+$api_users= sanitize_text_field($_POST['api_users']);
+	
 			if($_FILES['csv_data']['name']){
 			$api_table_name = 'wp_api_'.$api_name;
 // Begin Update Process by Truncating Table
@@ -283,7 +285,7 @@ $import = "INSERT INTO $api_table_name($column_name_final) VALUES (".$myvars.")"
 		}
 
 // Update API Metadata
-$update_api_q = "UPDATE api_data SET api_description = '$api_description', api_version = '$api_version', api_operations = '$api_operations' WHERE api_name = '$api_name'";
+$update_api_q = "UPDATE api_data SET api_description = '$api_description', api_version = '$api_version', api_operations = '$api_operations', api_users = '$api_users' WHERE api_name = '$api_name'";
 mysqli_query($conn, $update_api_q);
 
 
