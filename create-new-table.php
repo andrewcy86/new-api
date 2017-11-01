@@ -21,7 +21,7 @@ if (!$conn) {
 	$safe_api_description = sanitize_text_field($_POST['api_description']);
 	$safe_api_version = sanitize_text_field($_POST['api_version']);
 	$safe_api_operations = sanitize_text_field($_POST['api_operations']);
-	$safe_api_users = sanitize_text_field($_POST['api_users']);
+	$safe_api_users= sanitize_text_field(implode(",",$_POST['api_users']));
 	
 	/** Row Name Text Input */
 	$row_names = $_POST['name'];
