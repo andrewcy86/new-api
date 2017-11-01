@@ -143,9 +143,15 @@ $table = 'wp_api_'.$safe_table_name;
 $t_query = "SHOW TABLES LIKE '$table'";
 $t_result = $conn->query($t_query);
 
-$table_exists = mysqli_num_rows($t_result) > 0;
+if (mysqli_num_rows($t_result) > 0) {
+    	
+echo 'true';
 	
-echo $table_exits;
+} else {
+	
+echo 'false';
+}
+
 ?>
 <fieldset class="row-fieldset" id="api-submit">
 <button type="submit" >Update API</button>
