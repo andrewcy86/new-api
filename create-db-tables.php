@@ -168,7 +168,7 @@ $check_api = mysqli_query($conn,$check_api_q);
 }
 
 if(mysqli_num_rows($check_api) == 0 ){
-echo '<tr><td>You have not created any APIs yet...</td></tr>';
+echo '<tr><td>There are no APIs assigned to you at the moment.</td></tr>';
 } else {
   while ($row = mysqli_fetch_assoc($check_api)) {
                 $edit_table_url = 'admin.php?page=create-db-tables&table=' . $row["api_name"];
