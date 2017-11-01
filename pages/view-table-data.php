@@ -128,9 +128,10 @@ if (mysqli_num_rows($t_result) > 0) {
   <?php
     $blogusers = get_users('blog_id=1&orderby=nicename&role=subscriber');
     $user_selected = explode(',',$api_users);
+	print_r($user_selected);
     foreach ($blogusers as $user) {
 if (in_array($user->ID, $user_selected)) {
-  echo '<option value="' . $user->ID . '" selected>'. $user->user_email .'</option>';
+  echo '<option value="' . $user->ID . '" selected="selected">'. $user->user_email .'</option>';
 } else {
   echo '<option value="' . $user->ID . '">'. $user->user_email .'</option>';
 }
