@@ -285,8 +285,14 @@ $import = "INSERT INTO $api_table_name($column_name_final) VALUES (".$myvars.")"
 		}
 
 // Update API Metadata
+if( current_user_can('administrator') ) {
 $update_api_q = "UPDATE api_data SET api_description = '$api_description', api_version = '$api_version', api_operations = '$api_operations', api_users = '$api_users' WHERE api_name = '$api_name'";
 mysqli_query($conn, $update_api_q);
+} else {
+$update_api_q = "UPDATE api_data SET api_description = '$api_description', api_version = '$api_version', api_operations = '$api_operations' WHERE api_name = '$api_name'";
+mysqli_query($conn, $update_api_q);	
+}
+
 
 
 //echo "<script type='text/javascript'>alert('$values');</script>";
