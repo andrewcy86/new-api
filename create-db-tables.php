@@ -158,9 +158,14 @@ if (!$conn) {
                 </tr>
                 <?php
 
+if( current_user_can('administrator') ) { 
 $check_api_q = "SELECT api_name FROM api_data";
-
-$check_api = mysqli_query($conn,$check_api_q); 
+$check_api = mysqli_query($conn,$check_api_q);
+} else {
+$current_user_id = get_current_user_id();
+$check_api_q = "SELECT api_name FROM api_data WHERRE find_in_set('$current_user_id', cast(api_users as char)) > 0";
+$check_api = mysqli_query($conn,$check_api_q);
+}
 
 if(mysqli_num_rows($check_api) == 0 ){
 echo '<tr><td>You have not created any APIs yet...</td></tr>';
