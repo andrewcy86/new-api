@@ -50,6 +50,7 @@ $api_description = $row["api_description"];
 $api_version = $row["api_version"];
 $api_table = $row["api_table"];
 $api_operations = $row["api_operations"];
+$api_users = $row["api_users"];
      }
 
 }  
@@ -108,7 +109,7 @@ if (mysqli_num_rows($t_result) > 0) {
   <option value="read">Read</option>
 <?php } ?>
 
-<?php if ($api_operations == 'update') { ?>
+<?php if ($api_operations == 'read, update') { ?>
   <option value="read, update" selected>Write/Update</option>
 <?php } else { ?>
   <option value="read, update">Write/Update</option>
@@ -126,8 +127,13 @@ if (mysqli_num_rows($t_result) > 0) {
 <select class="api-users" name="api_users" id="api-users" multiple>
   <?php
     $blogusers = get_users('blog_id=1&orderby=nicename&role=subscriber');
+    $user_selected = explode(',',$api_users);
     foreach ($blogusers as $user) {
-        echo '<option value="' . $user->ID . '">'. $user->user_email .'</option>';
+if (in_array($user->ID, $user_selected)) {
+  echo '<option value="' . $user->ID . '" selected>'. $user->user_email .'</option>';
+} else {
+  echo '<option value="' . $user->ID . '">'. $user->user_email .'</option>';
+}
     }
 ?>
 
