@@ -144,7 +144,7 @@ if (in_array($user->ID, $user_selected)) {
 <div class="clear"></div>
 
 <fieldset class="row-fieldset" id="csv_upload">
-Upload CSV: <input type='file' name='csv_data' />
+<label id="upload-csv">Upload CSV</label>: <input type='file' name='csv_data' />
 </fieldset>
 
 <div class="clear"></div>
@@ -194,7 +194,10 @@ function cdbt_view_table_data_page_styles() {
 		padding-right:0px;
 		font-weight: 600;
 	}
-	
+	#upload-csv {
+		padding-right:0px;
+		font-weight: 600;
+	}
 	input[type="text"], input[type="checkbox"] {
 		margin-right: 10px!important;
 	}
