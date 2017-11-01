@@ -69,7 +69,7 @@ if (!$conn) {
 
 <div class="wrap">
 	<h2>API Management Dashboard 
-		<?php if( current_user_can('administrator') { ?>
+		<?php if( current_user_can('administrator') ) { ?>
 		<a href="<?php echo admin_url('admin.php?page=add-new-table'); ?>" class="page-title-action">
 			Add New API
 		</a>
@@ -154,7 +154,7 @@ if (!$conn) {
                 <tr class="db-list-header">
                     <th><h4>API Name</h4></th>
                     <?php // was column header for edit column <th></th> ?>
-                    <?php if( current_user_can('administrator') { ?><th></th><?php } ?>
+                    <?php if( current_user_can('administrator') ) { ?><th></th><?php } ?>
                 </tr>
                 <?php
 
@@ -178,7 +178,7 @@ echo '<tr><td>You have not created any APIs yet...</td></tr>';
                         <a class="table-links-edit" href="<?php echo admin_url($edit_table_url) ?>" title="<?php echo $row["api_name"] ?>">Edit</a>
                     </td>
                     */ ?>
-                    <?php if( current_user_can('administrator') { ?>
+                    <?php if( current_user_can('administrator') ) { ?>
 			<td class="delete-col">
                         <form action="<?php echo admin_url('admin-post.php'); ?>" method="post">
                             <input type="hidden" name="action" value="delete_db_table">
