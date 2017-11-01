@@ -38,7 +38,7 @@ if (!$conn) {
         /**
          * Select Table Names
          */
-$query = "SELECT id, api_name, api_description, api_version, api_table, api_operations FROM api_data WHERE api_name = '$safe_table_name'";
+$query = "SELECT id, api_name, api_description, api_version, api_table, api_operations, api_users FROM api_data WHERE api_name = '$safe_table_name'";
 
 $result = $conn->query($query);
 
