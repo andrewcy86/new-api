@@ -163,7 +163,7 @@ $check_api_q = "SELECT api_name FROM api_data";
 $check_api = mysqli_query($conn,$check_api_q);
 } else {
 $current_user_id = get_current_user_id();
-$check_api_q = "SELECT api_name FROM api_data WHERRE find_in_set('$current_user_id', cast(api_users as char)) > 0";
+$check_api_q = "SELECT api_name FROM api_data WHERE find_in_set($current_user_id, cast(api_users as char)) > 0";
 $check_api = mysqli_query($conn,$check_api_q);
 }
 
