@@ -25,6 +25,7 @@ if (!$conn) {
 	/** Row Name Text Input */
 	$row_names = $_POST['name'];
 	$row_types = $_POST['type'];
+	$row_counts = $_POST['count'];
 	$row_defaults = $_POST['default'];
 	$row_nulls = $_POST['null'];
 	$row_uniques = $_POST['unique'];
@@ -33,7 +34,7 @@ if (!$conn) {
 	for($i = 0; $i < $items_amount; $i++) {
         
 		$safe_row_name = sanitize_text_field($row_names[$i]);
-		$safe_row_type = sanitize_text_field($row_types[$i]);
+		$safe_row_type = sanitize_text_field($row_types[$i])."(".sanitize_text_field($row_counts[$i]).")";
 		$safe_row_default = sanitize_text_field($row_defaults[$i]);
 		$safe_row_null = $row_nulls[$i];
 		$safe_row_unique = $row_uniques[$i];
