@@ -33,7 +33,7 @@ $conn = mysqli_connect(DB_HOST, DB_USER, DB_PASSWORD, DB_NAME);
 function cdbt_create_db_tables_create_menu() {
 
 	//create new top-level menu
-	add_menu_page('API Dashboard', 'API Dashboard', 'subscriber', 'create-db-tables', 'cdbt_create_db_tables_settings_page' , 'dashicons-editor-table', 81 );
+	add_menu_page('API Dashboard', 'API Dashboard', 'read', 'create-db-tables', 'cdbt_create_db_tables_settings_page' , 'dashicons-editor-table', 81 );
 	
 	add_submenu_page( 'create-db-tables', 'Add New API', 'Add New API', 'administrator', 'add-new-table', 'cdbt_add_new_table_page' );
 
