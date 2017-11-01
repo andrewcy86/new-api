@@ -60,6 +60,14 @@ $api_operations = $row["api_operations"];
 	
             <h3>API - <?php echo $view_table ?></h3>
 
+<?php
+$table = 'wp_api_'.$safe_table_name;
+$t_query = "SHOW TABLES LIKE '$table'";
+$t_result = $conn->query($t_query);
+
+if (mysqli_num_rows($t_result) > 0) {
+
+?>
 <form action="<?php echo admin_url('admin-post.php'); ?>" method="post" enctype="multipart/form-data">
 
 			<fieldset class="row-fieldset" id="table-name">
@@ -138,29 +146,20 @@ Upload CSV: <input type='file' name='csv_data' />
   <input type="hidden" name="action" value="update_db_table">
   <input type="hidden" name="data" value="<?php echo $api_name ?>">
 		
-<?php
-$table = 'wp_api_'.$safe_table_name;
-$t_query = "SHOW TABLES LIKE '$table'";
-$t_result = $conn->query($t_query);
-
-if (mysqli_num_rows($t_result) > 0) {
-    	
-echo 'true';
-	
-} else {
-	
-echo 'false';
-}
-
-?>
 <fieldset class="row-fieldset" id="api-submit">
 <button type="submit" >Update API</button>
 </fieldset>
 
 
 
-</form>									
-						
+</form>	
+	    
+<?php
+} else {
+echo '<strong>The table associated with this API does not exisit. Please contact an administrator to resolve this issue.</strong>';
+}
+?>
+	    
     </div>
 
 <?php } // END cdbt_view_table_data
