@@ -123,7 +123,7 @@ if (mysqli_num_rows($t_result) > 0) {
 <?php if( current_user_can('administrator') ) { ?>
 <fieldset class="row-fieldset" id="api-users">
 <label id="api-version">User(s):</label>
-<select class="api-users" name="api_users" id="api-users" multiple>
+<select class="api-users" name="api_users[]" id="api-users" multiple>
   <?php
     $blogusers = get_users('blog_id=1&orderby=nicename&role=subscriber');
     $user_selected = explode(',',$api_users);
