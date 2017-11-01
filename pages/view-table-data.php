@@ -145,7 +145,7 @@ $t_result = $conn->query($t_query);
 
 $table_exists = mysql_num_rows($t_result) > 0;
 	
-
+echo $table_exits;
 ?>
 <fieldset class="row-fieldset" id="api-submit">
 <button type="submit" >Update API</button>
