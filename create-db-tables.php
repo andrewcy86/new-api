@@ -276,7 +276,7 @@ function cdbt_add_new_table_page() {
   <?php
     $blogusers = get_users('blog_id=1&orderby=nicename&role=subscriber');
     foreach ($blogusers as $user) {
-        echo '<option value="' . $user->user_id . '">'. $user->user_email .'</option>';
+        echo '<option value="' . $user->ID . '">'. $user->user_email .'</option>';
     }
 ?>
 
