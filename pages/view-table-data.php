@@ -85,7 +85,9 @@ api_<?php echo $api_name; ?>
 				<label id="table-endpoint">Endpoint:</label>
 				<!-- EPA Added API Prefix -->
 				<span style="position: relative; top: 2px;">
-<a href="https://devcentral.app.cloud.gov/api/index.php/api_<?php echo $api_name; ?>?api=<?php echo $api_name; ?>">https://devcentral.app.cloud.gov/api/index.php/api_<?php echo $api_name; ?>?api=<?php echo $api_name; ?></a>
+<a href="https://devcentral.app.cloud.gov/api/index.php/api_<?php echo $api_name; ?>?api=<?php echo $api_name; ?>">https://devcentral.app.cloud.gov/api/index.php/api_<?php echo $api_name; ?>?api=<?php echo $api_name; ?></a><br />
+Swagger Specification: <a href="https://devcentral.app.cloud.gov/api/index.php?api=<?php echo $api_name; ?>">https://devcentral.app.cloud.gov/api/index.php?api=<?php echo $api_name; ?></a><br />
+
 				 </span>
 			</fieldset>
 <div class="clear"></div>
