@@ -74,9 +74,19 @@ if (mysqli_num_rows($t_result) > 0) {
 			<fieldset class="row-fieldset" id="table-name">
 				<label id="table-name">Name:</label>
 				<!-- EPA Added API Prefix -->
-				<span style="position: relative; top: 2px;">
+<span style="position: relative; top: 2px;">
 				
-<?php echo $prefix; ?>api_<?php echo $api_name; ?></span></span>
+api_<?php echo $api_name; ?>
+</span>
+			</fieldset>
+<div class="clear"></div>
+		
+		<fieldset class="row-fieldset" id="table-endpoint">
+				<label id="table-endpoint">Endpoint:</label>
+				<!-- EPA Added API Prefix -->
+				<span style="position: relative; top: 2px;">
+<a href="https://devcentral.app.cloud.gov/api/index.php/api_<?php echo $api_name; ?>?api=<?php echo $api_name; ?>">https://devcentral.app.cloud.gov/api/index.php/api_<?php echo $api_name; ?>?api=<?php echo $api_name; ?></a>
+				 </span>
 			</fieldset>
 <div class="clear"></div>
 			
@@ -176,7 +186,7 @@ function cdbt_view_table_data_page_styles() {
 	?>
 <style>
 /* EPA API name and Description Added */
-	.api-field, #table-name,
+	.api-field, #table-name, #table-endpoint,
 	#row-label {
 		padding-right:25px;
 		font-weight: 600;
