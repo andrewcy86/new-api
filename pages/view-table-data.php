@@ -243,7 +243,7 @@ $api_operations = sanitize_text_field($_POST['api_operation']);
 $api_users= sanitize_text_field(implode(",",$_POST['api_users']));
 
 			if($_FILES['csv_data']['name']){
-			$api_table_name = 'wp_api_'.$api_name;
+			$api_table_name = 'api_'.$api_name;
 // Begin Update Process by Truncating Table
 			$truncate="TRUNCATE TABLE $api_table_name";
 			mysqli_query($conn,$truncate);
