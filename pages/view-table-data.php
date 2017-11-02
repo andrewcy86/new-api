@@ -62,7 +62,7 @@ $api_users = $row["api_users"];
             <h3>API - <?php echo $view_table ?></h3>
 
 <?php
-$table = 'wp_api_'.$safe_table_name;
+$table = 'api_'.$safe_table_name;
 $t_query = "SHOW TABLES LIKE '$table'";
 $t_result = $conn->query($t_query);
 
