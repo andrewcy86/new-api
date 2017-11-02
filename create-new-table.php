@@ -63,7 +63,8 @@ if (!$conn) {
 	 */
 
 	// EPA Added API Prefix
-	$table_name = $wpdb->prefix . "api_" . $safe_table_name;
+	//$table_name = $wpdb->prefix . "api_" . $safe_table_name;
+	$table_name = "api_" . $safe_table_name;
 	$charset_collate = $wpdb->get_charset_collate();
 
 	if($safe_table_name != null) {
