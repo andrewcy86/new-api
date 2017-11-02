@@ -92,9 +92,10 @@ if (mysqli_num_rows($t_result) > 0) {
 			    <input type="text" class="api-field" name="api_version" size="10" id="api-version" value="<?php echo $api_version; ?>">
 			</fieldset>
 <div class="clear"></div>			
-			
-<fieldset class="row-fieldset" id="api-version">
-<label id="api-version">Operation(s):</label>
+
+<?php if( current_user_can('administrator') ) { ?>
+<fieldset class="row-fieldset" id="api-operation">
+<label id="api-operation">Operation(s):</label>
 <select class="api-field" name="api_operation" id="api-operation">
 
 <?php if ($api_operations == 'list') { ?>
@@ -118,6 +119,7 @@ if (mysqli_num_rows($t_result) > 0) {
 
 </select>
 </fieldset>
+<?php } ?>
 
 <div class="clear"></div>	
 <?php if( current_user_can('administrator') ) { ?>
@@ -297,7 +299,7 @@ if( current_user_can('administrator') ) {
 $update_api_q = "UPDATE api_data SET api_description = '$api_description', api_version = '$api_version', api_operations = '$api_operations', api_users = '$api_users' WHERE api_name = '$api_name'";
 mysqli_query($conn, $update_api_q);
 } else {
-$update_api_q = "UPDATE api_data SET api_description = '$api_description', api_version = '$api_version', api_operations = '$api_operations' WHERE api_name = '$api_name'";
+$update_api_q = "UPDATE api_data SET api_description = '$api_description', api_version = '$api_version' WHERE api_name = '$api_name'";
 mysqli_query($conn, $update_api_q);	
 }
 
