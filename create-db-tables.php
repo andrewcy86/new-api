@@ -211,7 +211,6 @@ echo '<tr><td>There are no APIs assigned to you at the moment.</td></tr>';
 
 function cdbt_add_new_table_page() {
 	global $wpdb;
-	$prefix = $wpdb->prefix;
 	cdbt_add_page_styles();
 	?>
 <div class="wrap">
@@ -242,7 +241,7 @@ function cdbt_add_new_table_page() {
 			<fieldset class="row-fieldset" id="table-name">
 				<label id="table-name">Name:</label>
 				<!-- EPA Added API Prefix -->
-				<span style="position: relative; top: 2px;"><?php echo $prefix; ?>api_</span><input type="text" class="api-field" name="table_name" size="30" id="table-name">
+				<span style="position: relative; top: 2px;">api_</span><input type="text" class="api-field" name="table_name" size="30" id="table-name">
 				<span>(Alphanumeric only, no special charaters.)</span>
 			</fieldset>
 <div class="clear"></div>
