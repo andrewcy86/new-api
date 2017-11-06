@@ -501,7 +501,7 @@ if (!$conn) {
 		$remove_api_q = "DELETE FROM api_data WHERE api_name = '$db_table'";
 		mysqli_query($conn, $remove_api_q);
 		
-		$delete_table = 'wp_api_'.$db_table;
+		$delete_table = 'api_'.$db_table;
 		
         $delete_table_statement = "DROP TABLE IF EXISTS $delete_table";
 		echo $delete_table_statement;
