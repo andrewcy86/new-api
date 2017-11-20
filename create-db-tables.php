@@ -241,7 +241,7 @@ function cdbt_add_new_table_page() {
 			<fieldset class="row-fieldset" id="table-name">
 				<label id="table-name">Name:</label>
 				<!-- EPA Added API Prefix -->
-				<span style="position: relative; top: 2px;">api_</span><input type="text" class="api-field" name="table_name" size="30" id="table-name">
+				<span style="position: relative; top: 2px;">api_</span><input type="text" class="api-field" name="table_name" size="30" id="table-name" required>
 				<span>(Alphanumeric only, no special charaters.)</span>
 			</fieldset>
 <div class="clear"></div>
