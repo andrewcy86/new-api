@@ -534,5 +534,3 @@ add_action( 'admin_post_delete_db_table', 'cdbt_delete_db_table' );
 
 // Edit Database Table
 add_action( 'admin_post_edit_db_table', 'cdbt_edit_db_table' );
-
-?>
