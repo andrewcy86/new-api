@@ -1,4 +1,4 @@
-﻿<?php
+<?php
 /**
  * Plugin Name: Create DB Tables
  * Plugin URI:  http://jppreusdev.com/development/wordpress-plugins/create-db-tables/
@@ -534,3 +534,4 @@ add_action( 'admin_post_delete_db_table', 'cdbt_delete_db_table' );
 
 // Edit Database Table
 add_action( 'admin_post_edit_db_table', 'cdbt_edit_db_table' );
+?>
