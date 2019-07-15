@@ -85,7 +85,7 @@ api_<?php echo $api_name; ?>
 				<label id="table-endpoint">Endpoint:</label>
 				<!-- EPA Added API Prefix -->
 				<span style="position: relative; top: 2px;">
-<a href="https://developer.epa.gov/api/index.php/api_<?php echo $api_name; ?>?api=<?php echo $api_name; ?>">https://developer.epa.gov/api/index.php/records/api_<?php echo $api_name; ?></a><br />
+<a href="https://developer.epa.gov/api/index.php/records/api_<?php echo $api_name; ?>">https://developer.epa.gov/api/index.php/records/api_<?php echo $api_name; ?></a><br />
 Swagger Specification: <a href="https://developer.epa.gov/api/index.php/openapi/">https://developer.epa.gov/api/index.php/openapi/</a><br />
 
 				 </span>
