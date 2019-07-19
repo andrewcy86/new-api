@@ -296,7 +296,8 @@ for ($j=1; $j<=$col_count; $j++)
    $myvars .= "'".$item[$j]."',";   
 }
 $myvars = substr($myvars,0,-1);		
-
+$myvars = preg_replace('/[\x00-\x1F\x80-\xFF]/', '', $myvars);
+					
 $import = "INSERT INTO $api_table_name($column_name_final) VALUES (".$myvars.")";
 					
 
