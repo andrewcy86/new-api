@@ -79,7 +79,8 @@ if (!$conn) {
 		$completed_sql = $completed_sql . "UNIQUE KEY id (id) ) $charset_collate;";
 
 		require_once( ABSPATH . 'wp-admin/includes/upgrade.php' );
-		dbDelta( $completed_sql );		
+		//dbDelta( $completed_sql );
+		mysqli_query($conn, $completed_sql);
 // EPA insert a record into api_data
 
 
